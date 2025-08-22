@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+main {
+  margin-top: 64px; /* typical AppBar height */
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -16,8 +20,6 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -34,5 +36,206 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+* {
+  padding: 0px;
+  /* border: none; */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-bar {
+  display: flex;
+  align-items: center; 
+  align-self: center;
+  gap: 10px; 
+  margin: 20px; 
+}
+
+.search-bar label {
+  font-weight: bold; 
+  color: #333; 
+  font-size: 16px;
+}
+
+input[type="text"] {
+  padding: 10px 15px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  width: 500px; 
+  outline: none; 
+  transition: border-color 0.3s; 
+}
+
+input[type="text"]:focus {
+  border-color: #007bff; 
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+
+.items-container {
+  gap: 25px;
+  width: 80%;
+  margin-top: 3rem;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.items-container button {
+  border-radius: 12px;
+  border-color: black;
+  border-width: 2px;
+  width: 100%;
+  height: 58px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
+.item-list {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  padding-left: 200px;
+  padding-right: 200px;
+  justify-content: center; 
+  align-content: center; 
+  gap: 10px;
+ 
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+  padding: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(191, 197, 197);
+  border-radius: 12px;
+}
+
+.details-btn {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid black;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 12px;
+  background: white;
+  color: black !important;   /* force normal state */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.details-btn:hover {
+  background: black;
+  color: white !important;   /* force hover text color */
+  cursor: pointer;
+}
+
+.image-container {
+  max-width: 300px;
+  height: 300px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: block; 
+}
+
+.outer-detail-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* image | info side by side */
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* image */
+.detail-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-image img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* info */
+.detail-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detail-price {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.detail-rating {
+  margin-top: 20px;
+  font-size: 14px;
+  color: gray;
+}
+
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .detail-container {
+    grid-template-columns: 1fr; 
+    text-align: center;
+  }
+
+  .detail-price {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .search-bar input {
+    min-width: unset;
+    width: 80%;
+  }
+  .item-list {
+    grid-template-columns: auto;
+  }
+  .item {
+    width: 300px;
+    margin-right: 25px;
   }
 }
