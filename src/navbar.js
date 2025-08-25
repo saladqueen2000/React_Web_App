@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
@@ -14,16 +15,14 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "./store/authSlice"
-
+import { logout } from "./store/authSlice";
 
 const settings = ["Logout"];
-
 
 function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
-  
+
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -38,7 +37,7 @@ function ResponsiveAppBar() {
   const handleSettingClick = (setting) => {
     if (setting === "Logout") {
       dispatch(logout());
-       navigate("/login");
+      navigate("/login");
     }
     handleCloseUserMenu();
   };
@@ -49,29 +48,49 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters>
           {/* Logo */}
           <AdbIcon sx={{ display: { xs: "flex", md: "flex" }, mr: 1 }} />
-<Typography
-  variant="h6"
-  noWrap
-  component={Link}
-  to="/"
-  sx={{
-    mr: 2,
-    display: { xs: "flex", md: "flex" }, 
-    fontFamily: "monospace",
-    fontWeight: 700,
-    letterSpacing: ".3rem",
-    color: "white",
-    textDecoration: "none",
-  }}
->
-  LOGO
-</Typography>
+          <Typography
+            variant="h6"
+            noWrap
+            component={Link}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "white",
+              textDecoration: "none",
+            }}
+          >
+            LOGO
+          </Typography>
 
-          
           <Box sx={{ flexGrow: 1 }} />
 
           {isAuthenticated ? (
-            <Box sx={{ flexGrow: 0 }}>
+            <Box
+              sx={{
+                flexGrow: 0,
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+              }}
+            >
+              <Tooltip title="Open your cart">
+                <ShoppingCartIcon
+                  onClick={() => navigate("/cart")}
+                  fontSize="large"
+                  sx={{
+                    paddingTop: "3px",
+                    "&:hover": {
+                      fontSize: 50,
+                      cursor: "pointer",
+                      alt: "Show your cart",
+                    },
+                  }}
+                ></ShoppingCartIcon>
+              </Tooltip>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar
@@ -108,13 +127,15 @@ function ResponsiveAppBar() {
               </Menu>
             </Box>
           ) : (
-            <Button
-              component={Link}
-              to="/login"
-              sx={{ color: "white", fontWeight: "bold" }}
-            >
-              Login
-            </Button>
+            <Box>
+              <Button
+                component={Link}
+                to="/login"
+                sx={{ color: "white", fontWeight: "bold" }}
+              >
+                Login
+              </Button>
+            </Box>
           )}
         </Toolbar>
       </Container>
@@ -122,4 +143,3 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
-

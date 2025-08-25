@@ -2,11 +2,13 @@
   {
     "email": "user@gmail.com",
     "password": "password123",
-    "role": "user"
+    "role": "user",
+    "id": 2
   }, 
   {
     "email": "admin@gmail.com",
     "password": "admin123",
-    "role": "admin"
+    "role": "admin",
+    "id": 1
   }
 ]
